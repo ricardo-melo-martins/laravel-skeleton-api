@@ -1,0 +1,22 @@
+
+@api_url={{$dotenv API_EXTERNAL_URL}}
+@token={{$dotenv API_AUTHORIZATION}}
+@endpoint_teams=/v1/teams
+@endpoint_players=/v1/players
+@endpoint_games=/v1/games
+@contentType = application/json
+
+### get teams
+GET {{api_url}}{{endpoint_teams}}
+Authorization: {{token}}
+Content-Type: {{contentType}}
+
+### get players
+GET {{api_url}}{{endpoint_players}}
+Authorization: {{token}}
+Content-Type: {{contentType}}
+
+### get games
+GET {{api_url}}{{endpoint_games}}?seasons[]=2023
+Authorization: {{token}} 
+Content-Type: {{contentType}}
