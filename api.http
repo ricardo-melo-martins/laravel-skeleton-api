@@ -1,0 +1,48 @@
+
+@api_url={{$dotenv APP_URL}}:{{$dotenv APP_PORT}}
+
+@contentType = application/json
+
+@beareToken = ""
+
+### Registrar
+POST {{api_url}}/api/auth/register
+Content-Type: {{contentType}}
+
+{
+    "first_name": "Ricardo",
+    "last_name": "Martins",
+    "username": "ricardo.martins",
+    "email": "email@teste.com",
+    "password": "YourP@ssw0rd"
+}
+
+### Autenticar
+POST {{api_url}}/api/auth/login
+Content-Type: {{contentType}}
+
+{
+    "email": "email@teste.com",
+    "password": "YourP@ssw0rd"
+}
+
+### Logout
+POST {{api_url}}/api/auth/logout
+Content-Type: {{contentType}}
+Authorization: {{beareToken}}
+
+
+### get teams
+GET {{api_url}}/api/teams
+Content-Type: {{contentType}}
+Authorization: {{beareToken}}
+
+### get players
+GET {{api_url}}/api/players
+Content-Type: {{contentType}}
+Authorization: {{beareToken}}
+
+### get games
+GET {{api_url}}/api/games
+Content-Type: {{contentType}}
+Authorization: {{beareToken}}

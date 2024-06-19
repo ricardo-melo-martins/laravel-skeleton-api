@@ -12,11 +12,11 @@ Authorization: {{token}}
 Content-Type: {{contentType}}
 
 ### get players
-GET {{api_url}}{{endpoint_players}}
+GET {{api_url}}{{endpoint_players}}?per_page=100
 Authorization: {{token}}
 Content-Type: {{contentType}}
 
 ### get games
-GET {{api_url}}{{endpoint_games}}?seasons[]=2023
+GET {{api_url}}{{endpoint_games}}?seasons[]=2023&per_page=100
 Authorization: {{token}} 
 Content-Type: {{contentType}}
