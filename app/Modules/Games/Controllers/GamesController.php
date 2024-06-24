@@ -23,7 +23,7 @@ class GamesController extends ControllerAbstract
     /**
      * @OA\Get(
      *     path="/api/v1/games",
-     *     security="XAuthorization",
+     *     security={{"bearerAuth": {}}},
      *     summary="Get a list of games",
      *     tags={"Games"},
      *     operationId="SearchGames",

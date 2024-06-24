@@ -26,7 +26,7 @@ class LoginController extends ControllerAbstract implements ILogin
      * @OA\Post (
      *     path="/api/auth/login",
      *     security={{"bearerAuth": {}}},
-     *     tags={"AuthenticationPublic"},
+     *     tags={"Authentication"},
      *     @OA\RequestBody(
      *         @OA\MediaType(
      *             mediaType="application/json",

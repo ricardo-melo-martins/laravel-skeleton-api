@@ -78,6 +78,13 @@ Route::group([
     Route::put('/games/{gameId}', GamesController::class .'@update')->name('games.update');    
     Route::delete('/games/{gameId}', GamesController::class .'@destroy')->name('games.destroy');
   
+});
+
+Route::group([
+    'middleware' => ['api', 'header.authorization'],
+    'prefix' => 'admin',
+], function ($router) {
+      
     # USERS
     Route::get('/users', UsersController::class .'@index')->name('users.index');
     Route::post('/users', UsersController::class .'@store')->name('users.store');

@@ -22,8 +22,8 @@ class UsersController extends ControllerAbstract
     
     /**
      * @OA\Get(
-     *     path="/api/users",
-     *     security="XAuthorization",
+     *     path="/api/admin/users",
+     *     security={{"bearerAuth": {}}},
      *     summary="Get a list of users",
      *     tags={"Users"},
      *     operationId="SearchUsers",
@@ -40,7 +40,7 @@ class UsersController extends ControllerAbstract
 
     /**
      * @OA\Post (
-     *     path="/api/users",
+     *     path="/api/admin/users",
      *     summary="Create one user",
      *     security={{"bearerAuth": {}}},
      *     tags={"Users"},
@@ -78,7 +78,7 @@ class UsersController extends ControllerAbstract
     /**
      *
      * @OA\Get(
-     *     path="/api/users/{userId}",
+     *     path="/api/admin/users/{userId}",
      *     summary="Get a one user",
      *     security={{"bearerAuth": {}}},
      *     tags={"Users"},
@@ -108,7 +108,7 @@ class UsersController extends ControllerAbstract
 
     /**
     * @OA\Put (
-     *     path="/api/users/{userId}",
+     *     path="/api/admin/users/{userId}",
      *     summary="Update one user",
      *     security={{"bearerAuth": {}}},
      *     tags={"Users"},
@@ -164,10 +164,10 @@ class UsersController extends ControllerAbstract
     /**
      *
      * @OA\Delete(
-     *     path="/api/users/{userId}",
+     *     path="/api/admin/users/{userId}",
      *     summary="Delete a one user",
      *     security={{"bearerAuth": {}}},
-     *     tags={"User"},
+     *     tags={"Users"},
      *     operationId="DeleteUserDetails",
      *     @OA\Parameter(
      *        description="User ID",

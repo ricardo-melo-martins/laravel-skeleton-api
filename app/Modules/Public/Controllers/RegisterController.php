@@ -21,7 +21,7 @@ class RegisterController extends ControllerAbstract
      * Register
      * @OA\Post (
      *     path="/api/auth/register",
-     *     tags={"AuthenticationPublic"},
+     *     tags={"Authentication"},
      *     security={{"bearerAuth": {}}},
      *     @OA\RequestBody(
      *         @OA\MediaType(

@@ -15,7 +15,7 @@ class LogoutController extends ControllerAbstract
      * @OA\Post (
      *     path="/api/auth/logout",
      *     security={{"bearerAuth": {}}},
-     *     tags={"AuthenticationPrivate"},
+     *     tags={"Authentication"},
      *     @OA\RequestBody(
      *         @OA\MediaType(
      *             mediaType="application/json",

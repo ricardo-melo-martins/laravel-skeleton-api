@@ -9,7 +9,7 @@
         "/api/auth/logout": {
             "post": {
                 "tags": [
-                    "AuthenticationPrivate"
+                    "Authentication"
                 ],
                 "summary": "Logout",
                 "operationId": "38e56bf83bebc195596e7769f893ce09",
@@ -116,7 +116,11 @@
                         "description": "Invalid request"
                     }
                 },
-                "security": "XAuthorization"
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
             },
             "post": {
                 "tags": [
@@ -590,7 +594,7 @@
         "/api/auth/login": {
             "post": {
                 "tags": [
-                    "AuthenticationPublic"
+                    "Authentication"
                 ],
                 "summary": "Login",
                 "operationId": "489c1fda3099ac7b58863988ce6795b8",
@@ -745,7 +749,7 @@
         "/api/auth/register": {
             "post": {
                 "tags": [
-                    "AuthenticationPublic"
+                    "Authentication"
                 ],
                 "summary": "Register",
                 "operationId": "ae17e52d7e4aaa0ffc3b85edd91f1447",
@@ -1137,7 +1141,7 @@
                 ]
             }
         },
-        "/api/users": {
+        "/api/admin/users": {
             "get": {
                 "tags": [
                     "Users"
@@ -1152,7 +1156,11 @@
                         "description": "Invalid request"
                     }
                 },
-                "security": "XAuthorization"
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
             },
             "post": {
                 "tags": [
@@ -1194,7 +1202,7 @@
                 ]
             }
         },
-        "/api/users/{userId}": {
+        "/api/admin/users/{userId}": {
             "get": {
                 "tags": [
                     "Users"
@@ -1288,7 +1296,7 @@
             },
             "delete": {
                 "tags": [
-                    "User"
+                    "Users"
                 ],
                 "summary": "Delete a one user",
                 "operationId": "DeleteUserDetails",
