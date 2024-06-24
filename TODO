@@ -27,8 +27,8 @@ Padrão Design Pattern Repository:
 CRUD:
 
 ● Implemente um CRUD para os modelos criados. Os métodos do CRUD devem utilizar os repositórios criados anteriormente.
--[ ] ○ Crie endpoints para usuários:
-    -[ ] ■ Listar / Editar / Excluir / Criar / Atualizar / Pesquisar os Usuários
+-[x] ○ Crie endpoints para usuários:
+    -[x] ■ Listar / Editar / Excluir / Criar / Atualizar / Pesquisar os Usuários
 -[ ] ■ Criar duas permissões para os usuários: Admin e User
 
 ○ - Crie endpoints para o serviço externo

@@ -7,6 +7,7 @@ use App\Modules\Teams\Controllers\TeamsController;
 use App\Modules\Authentication\Controllers\LogoutController;
 use App\Modules\Public\Controllers\LoginController;
 use App\Modules\Public\Controllers\RegisterController;
+use App\Modules\Users\Controllers\UsersController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
@@ -77,5 +78,12 @@ Route::group([
     Route::put('/games/{gameId}', GamesController::class .'@update')->name('games.update');    
     Route::delete('/games/{gameId}', GamesController::class .'@destroy')->name('games.destroy');
   
+    # USERS
+    Route::get('/users', UsersController::class .'@index')->name('users.index');
+    Route::post('/users', UsersController::class .'@store')->name('users.store');
+    Route::get('/users/{userId}', UsersController::class .'@show')->name('users.show');
+    Route::put('/users/{userId}', UsersController::class .'@update')->name('users.update');    
+    Route::delete('/users/{userId}', UsersController::class .'@destroy')->name('users.destroy');
+    
 });
 

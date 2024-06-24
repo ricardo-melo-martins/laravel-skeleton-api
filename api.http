@@ -266,3 +266,62 @@ GET {{api_url}}/api/v1/games?q=eng&season=2023
 Accept: {{contentType}}
 Content-Type: {{contentType}}
 X-Authorization: {{beareToken}}
+
+
+
+
+
+
+### USER List
+GET {{api_url}}/api/v1/users
+Accept: {{contentType}}
+Content-Type: {{contentType}}
+X-Authorization: {{beareToken}}
+
+
+### USER create
+POST {{api_url}}/api/v1/users
+Accept: {{contentType}}
+Content-Type: {{contentType}}
+X-Authorization: {{beareToken}}
+
+{
+    "first_name": "admin",
+    "last_name": "test",
+    "username": "admin",
+    "email": "test@email.com",
+    "password": "pass"
+}
+
+
+### USER read
+GET {{api_url}}/api/v1/users/3
+Accept: {{contentType}}
+Content-Type: {{contentType}}
+X-Authorization: {{beareToken}}
+
+
+### USER update
+PUT {{api_url}}/api/v1/users/3
+Accept: {{contentType}}
+Content-Type: {{contentType}}
+X-Authorization: {{beareToken}}
+
+{
+    "username": "admin.test",
+}
+
+
+### USER delete
+
+DELETE {{api_url}}/api/v1/users/3
+Accept: {{contentType}}
+Content-Type: {{contentType}}
+X-Authorization: {{beareToken}}
+
+
+### USER Find
+GET {{api_url}}/api/v1/users?q=test
+Accept: {{contentType}}
+Content-Type: {{contentType}}
+X-Authorization: {{beareToken}}
