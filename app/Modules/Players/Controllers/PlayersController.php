@@ -22,6 +22,7 @@ class PlayersController extends ControllerAbstract
      * @OA\Get(
      *     path="/api/v1/players",
      *     summary="Get a list of players",
+     *     security={{"bearerAuth": {}}},
      *     tags={"Players"},
      *     operationId="SearchPlayer",
      *     @OA\Response(response=200, description="Successful operation"),
@@ -40,6 +41,7 @@ class PlayersController extends ControllerAbstract
      * @OA\Post (
      *     path="/api/v1/players",
      *     summary="Create one player",
+     *     security={{"bearerAuth": {}}},
      *     tags={"Players"},
      *     operationId="CreatePlayer",
      *     @OA\RequestBody(
@@ -141,6 +143,7 @@ class PlayersController extends ControllerAbstract
      * @OA\Get(
      *     path="/api/v1/players/{playerId}",
      *     summary="Get a one players",
+     *     security={{"bearerAuth": {}}},
      *     tags={"Players"},
      *     operationId="GetPlayerDetails",
      *     @OA\Parameter(
@@ -170,6 +173,7 @@ class PlayersController extends ControllerAbstract
     * @OA\Put (
      *     path="/api/v1/players/{playerId}",
      *     summary="Update one player",
+     *     security={{"bearerAuth": {}}},
      *     tags={"Players"},
      *     operationId="UpdatePlayersDetails",
      *     @OA\Parameter(
@@ -282,6 +286,7 @@ class PlayersController extends ControllerAbstract
      * @OA\Delete(
      *     path="/api/v1/players/{playerId}",
      *     summary="Delete a one player",
+     *     security={{"bearerAuth": {}}},
      *     tags={"Players"},
      *     operationId="DeletePlayerDetails",
      *     @OA\Parameter(

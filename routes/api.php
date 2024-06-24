@@ -42,9 +42,9 @@ Route::group([
     'middleware' => 'api',
     'prefix' => 'auth',
 ], function ($router) {
-    Route::post('/login', [AuthController::class, 'login']);
+    Route::post('/login', [LoginController::class, 'login']);
     Route::post('/register', [RegisterController::class, 'register']);
-    Route::post('/logout', [AuthController::class, 'logout']);
+    Route::post('/logout', [LogoutController::class, 'logout']);
     Route::post('/refresh', [AuthController::class, 'refresh']);
     Route::get('/me', [AuthController::class, 'userProfile']); 
     
@@ -52,7 +52,7 @@ Route::group([
 
 
 Route::group([
-    'middleware' => 'api',
+    'middleware' => ['api', 'header.authorization'],
     'prefix' => 'v1',
 ], function ($router) {
     

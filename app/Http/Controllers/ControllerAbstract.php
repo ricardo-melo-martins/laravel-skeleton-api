@@ -13,8 +13,8 @@ use App\Http\Handlers\Responses\ResponseTrait;
  * @OA\SecurityScheme(
  *      type="apiKey",
  *      in="header",
- *      securityScheme="token",
- *      name="Authorization"
+ *      securityScheme="bearerAuth",
+ *      name="X-Authorization"
  *  )
  */
 class ControllerAbstract extends Controller

@@ -75,6 +75,14 @@ DB_PASSWORD=YourP@ssw0rd!
 
 ```
 
+update api external authorization
+
+``` bash
+API_AUTHORIZATION=your-token
+
+```
+
+
 Connection verify example...
 
 ```bash
@@ -177,14 +185,14 @@ curl --request POST \
 # Games
 
 
+```
+
 ## Schedule
 
-import data example 
+import data example to balldontlie api
 
 php artisan schedule:run
 
-
-```
 
 
 ## License

@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Modules\Users\Models\User;
+
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;

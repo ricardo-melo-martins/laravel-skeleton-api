@@ -115,7 +115,8 @@
                     "400": {
                         "description": "Invalid request"
                     }
-                }
+                },
+                "security": "XAuthorization"
             },
             "post": {
                 "tags": [
@@ -160,7 +161,12 @@
                     "400": {
                         "description": "Invalid request"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
             }
         },
         "/api/v1/games/{gameId}": {
@@ -190,7 +196,12 @@
                     "400": {
                         "description": "Invalid request"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
             },
             "put": {
                 "tags": [
@@ -248,7 +259,12 @@
                     "400": {
                         "description": "Invalid request"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
             },
             "delete": {
                 "tags": [
@@ -276,7 +292,12 @@
                     "400": {
                         "description": "Invalid request"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
             }
         },
         "/api/v1/players": {
@@ -293,7 +314,12 @@
                     "400": {
                         "description": "Invalid request"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
             },
             "post": {
                 "tags": [
@@ -380,7 +406,12 @@
                     "400": {
                         "description": "Invalid request"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
             }
         },
         "/api/v1/players/{playerId}": {
@@ -410,7 +441,12 @@
                     "400": {
                         "description": "Invalid request"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
             },
             "put": {
                 "tags": [
@@ -510,7 +546,12 @@
                     "400": {
                         "description": "Invalid request"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
             },
             "delete": {
                 "tags": [
@@ -538,7 +579,12 @@
                     "400": {
                         "description": "Invalid request"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
             }
         },
         "/api/auth/login": {
@@ -567,7 +613,7 @@
                                 },
                                 "type": "object",
                                 "example": {
-                                    "email": "user@test.com",
+                                    "email": "email@tests.com",
                                     "password": "YourP@ssw0rd!"
                                 }
                             }
@@ -612,7 +658,7 @@
                                                         },
                                                         "email": {
                                                             "type": "string",
-                                                            "example": "user@test.com"
+                                                            "example": "email@tests.com"
                                                         },
                                                         "email_verified_at": {
                                                             "type": "string",
@@ -688,7 +734,12 @@
                             }
                         }
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
             }
         },
         "/api/auth/register": {
@@ -851,7 +902,12 @@
                             }
                         }
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
             }
         },
         "/api/v1/teams": {
@@ -868,7 +924,12 @@
                     "400": {
                         "description": "Invalid request"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
             },
             "post": {
                 "tags": [
@@ -925,7 +986,12 @@
                     "400": {
                         "description": "Invalid request"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
             }
         },
         "/api/v1/teams/{teamId}": {
@@ -955,7 +1021,12 @@
                     "400": {
                         "description": "Invalid request"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
             },
             "put": {
                 "tags": [
@@ -1025,7 +1096,12 @@
                     "400": {
                         "description": "Invalid request"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
             },
             "delete": {
                 "tags": [
@@ -1053,15 +1129,20 @@
                     "400": {
                         "description": "Invalid request"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
             }
         }
     },
     "components": {
         "securitySchemes": {
-            "token": {
+            "bearerAuth": {
                 "type": "apiKey",
-                "name": "Authorization",
+                "name": "X-Authorization",
                 "in": "header"
             }
         }

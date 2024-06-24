@@ -23,6 +23,7 @@ class GamesController extends ControllerAbstract
     /**
      * @OA\Get(
      *     path="/api/v1/games",
+     *     security="XAuthorization",
      *     summary="Get a list of games",
      *     tags={"Games"},
      *     operationId="SearchGames",
@@ -41,6 +42,7 @@ class GamesController extends ControllerAbstract
      * @OA\Post (
      *     path="/api/v1/games",
      *     summary="Create one game",
+     *     security={{"bearerAuth": {}}},
      *     tags={"Games"},
      *     operationId="CreateGame",
      *     @OA\RequestBody(
@@ -90,6 +92,7 @@ class GamesController extends ControllerAbstract
      * @OA\Get(
      *     path="/api/v1/games/{gameId}",
      *     summary="Get a one game",
+     *     security={{"bearerAuth": {}}},
      *     tags={"Games"},
      *     operationId="GetGameDetails",
      *     @OA\Parameter(
@@ -119,6 +122,7 @@ class GamesController extends ControllerAbstract
     * @OA\Put (
      *     path="/api/v1/games/{gameId}",
      *     summary="Update one game",
+     *     security={{"bearerAuth": {}}},
      *     tags={"Games"},
      *     operationId="UpdateGamesDetails",
      *     @OA\Parameter(
@@ -179,6 +183,7 @@ class GamesController extends ControllerAbstract
      * @OA\Delete(
      *     path="/api/v1/games/{gameId}",
      *     summary="Delete a one game",
+     *     security={{"bearerAuth": {}}},
      *     tags={"Games"},
      *     operationId="DeleteGameDetails",
      *     @OA\Parameter(

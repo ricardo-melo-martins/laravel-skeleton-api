@@ -22,6 +22,7 @@ class TeamsController extends ControllerAbstract
      * @OA\Get(
      *     path="/api/v1/teams",
      *     summary="Get a list of teams",
+     *     security={{"bearerAuth": {}}},
      *     tags={"Teams"},
      *     operationId="SearchTeams",
      *     @OA\Response(response=200, description="Successful operation"),
@@ -40,6 +41,7 @@ class TeamsController extends ControllerAbstract
      * @OA\Post (
      *     path="/api/v1/teams",
      *     summary="Create one team",
+     *     security={{"bearerAuth": {}}},
      *     tags={"Teams"},
      *     operationId="CreateTeam",
      *     @OA\RequestBody(
@@ -105,6 +107,7 @@ class TeamsController extends ControllerAbstract
      * @OA\Get(
      *     path="/api/v1/teams/{teamId}",
      *     summary="Get a one team",
+     *     security={{"bearerAuth": {}}},
      *     tags={"Teams"},
      *     operationId="GetTeamDetails",
      *     @OA\Parameter(
@@ -134,6 +137,7 @@ class TeamsController extends ControllerAbstract
     * @OA\Put (
      *     path="/api/v1/teams/{teamId}",
      *     summary="Update one team",
+     *     security={{"bearerAuth": {}}},
      *     tags={"Teams"},
      *     operationId="UpdateTeamDetails",
      *     @OA\Parameter(
@@ -210,6 +214,7 @@ class TeamsController extends ControllerAbstract
      * @OA\Delete(
      *     path="/api/v1/teams/{teamId}",
      *     summary="Delete a one team",
+     *     security={{"bearerAuth": {}}},
      *     tags={"Teams"},
      *     operationId="DeleteTeamDetails",
      *     @OA\Parameter(

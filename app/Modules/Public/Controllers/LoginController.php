@@ -16,6 +16,8 @@ class LoginController extends ControllerAbstract implements ILogin
 
     public function __construct(AuthService $authService)
     {
+        $this->middleware(['auth:api', 'header.authorization'], ['except' => ['login']]);
+
         $this->authService = $authService;
     }
 
@@ -23,6 +25,7 @@ class LoginController extends ControllerAbstract implements ILogin
      * Login
      * @OA\Post (
      *     path="/api/auth/login",
+     *     security={{"bearerAuth": {}}},
      *     tags={"AuthenticationPublic"},
      *     @OA\RequestBody(
      *         @OA\MediaType(
@@ -40,7 +43,7 @@ class LoginController extends ControllerAbstract implements ILogin
      *                      )
      *                 ),
      *                 example={
-     *                     "email":"user@test.com",
+     *                     "email":"email@tests.com",
      *                     "password":"YourP@ssw0rd!"
      *                }
      *             )
@@ -59,7 +62,7 @@ class LoginController extends ControllerAbstract implements ILogin
      *                  @OA\Property(property="user", type="object",
      *                      @OA\Property(property="id", type="number", example=2),
      *                      @OA\Property(property="name", type="string", example="User"),
-     *                      @OA\Property(property="email", type="string", example="user@test.com"),
+     *                      @OA\Property(property="email", type="string", example="email@tests.com"),
      *                      @OA\Property(property="email_verified_at", type="string", example=null),
      *                      @OA\Property(property="updated_at", type="string", example="2022-06-28 06:06:17"),
      *                      @OA\Property(property="created_at", type="string", example="2022-06-28 06:06:17"),

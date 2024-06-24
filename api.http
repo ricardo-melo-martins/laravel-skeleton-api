@@ -39,14 +39,14 @@ Content-Type: {{contentType}}
 GET {{api_url}}/api/v1/me
 Accept: {{contentType}}
 Content-Type: {{contentType}}
-Authorization: {{beareToken}}
+X-Authorization: {{beareToken}}
 
 ### Logout
 
 POST {{api_url}}/api/auth/logout
 Accept: {{contentType}}
 Content-Type: {{contentType}}
-Authorization: {{beareToken}}
+X-Authorization: {{beareToken}}
 
 
 
@@ -55,6 +55,7 @@ Authorization: {{beareToken}}
 
 ### Registrar novo usuário
 POST {{api_url}}/api/auth/register
+Accept: {{contentType}}
 Content-Type: {{contentType}}
 
 {
@@ -67,6 +68,7 @@ Content-Type: {{contentType}}
 
 ### Autenticar usuário criado anteriormente
 POST {{api_url}}/api/auth/login
+Accept: {{contentType}}
 Content-Type: {{contentType}}
 
 {
@@ -78,21 +80,21 @@ Content-Type: {{contentType}}
 POST {{api_url}}/api/auth/logout
 Accept: {{contentType}}
 Content-Type: {{contentType}}
-Authorization: {{beareToken}}
+X-Authorization: {{beareToken}}
 
 
 ### TEAM List
 GET {{api_url}}/api/v1/teams
 Accept: {{contentType}}
 Content-Type: {{contentType}}
-Authorization: {{beareToken}}
+X-Authorization: {{beareToken}}
 
 
 ### TEAM create
 POST {{api_url}}/api/v1/teams
 Accept: {{contentType}}
 Content-Type: {{contentType}}
-Authorization: {{beareToken}}
+X-Authorization: {{beareToken}}
 
 {
     "conference": "West",
@@ -108,14 +110,14 @@ Authorization: {{beareToken}}
 GET {{api_url}}/api/v1/teams/45
 Accept: {{contentType}}
 Content-Type: {{contentType}}
-Authorization: {{beareToken}}
+X-Authorization: {{beareToken}}
 
 
 ### TEAM update
 PUT {{api_url}}/api/v1/teams/45
 Accept: {{contentType}}
 Content-Type: {{contentType}}
-Authorization: {{beareToken}}
+X-Authorization: {{beareToken}}
 
 {
     "conference": "Mid-East",
@@ -128,14 +130,14 @@ Authorization: {{beareToken}}
 DELETE {{api_url}}/api/v1/teams/45
 Accept: {{contentType}}
 Content-Type: {{contentType}}
-Authorization: {{beareToken}}
+X-Authorization: {{beareToken}}
 
 
 ### TEAM Find
 GET {{api_url}}/api/v1/teams?q=Bu
 Accept: {{contentType}}
 Content-Type: {{contentType}}
-Authorization: {{beareToken}}
+X-Authorization: {{beareToken}}
 
 
 
@@ -144,14 +146,14 @@ Authorization: {{beareToken}}
 GET {{api_url}}/api/v1/players
 Accept: {{contentType}}
 Content-Type: {{contentType}}
-Authorization: {{beareToken}}
+X-Authorization: {{beareToken}}
 
 
 ### PLAYER create
 POST {{api_url}}/api/v1/players
 Accept: {{contentType}}
 Content-Type: {{contentType}}
-Authorization: {{beareToken}}
+X-Authorization: {{beareToken}}
 
 {
     "first_name": "Ricardo",
@@ -173,14 +175,14 @@ Authorization: {{beareToken}}
 GET {{api_url}}/api/v1/players/2
 Accept: {{contentType}}
 Content-Type: {{contentType}}
-Authorization: {{beareToken}}
+X-Authorization: {{beareToken}}
 
 
 ### PLAYER update
 PUT {{api_url}}/api/v1/players/1
 Accept: {{contentType}}
 Content-Type: {{contentType}}
-Authorization: {{beareToken}}
+X-Authorization: {{beareToken}}
 
 {
     "first_name": "Jogador",
@@ -193,14 +195,14 @@ Authorization: {{beareToken}}
 DELETE {{api_url}}/api/v1/players/1
 Accept: {{contentType}}
 Content-Type: {{contentType}}
-Authorization: {{beareToken}}
+X-Authorization: {{beareToken}}
 
 
 ### PLAYER Find
 GET {{api_url}}/api/v1/players?q=eng
 Accept: {{contentType}}
 Content-Type: {{contentType}}
-Authorization: {{beareToken}}
+X-Authorization: {{beareToken}}
 
 
 
@@ -210,28 +212,26 @@ Authorization: {{beareToken}}
 GET {{api_url}}/api/v1/games
 Accept: {{contentType}}
 Content-Type: {{contentType}}
-Authorization: {{beareToken}}
+X-Authorization: {{beareToken}}
 
 
 ### GAME create
 POST {{api_url}}/api/v1/games
 Accept: {{contentType}}
 Content-Type: {{contentType}}
-Authorization: {{beareToken}}
+X-Authorization: {{beareToken}}
 
 {
-    "first_name": "Ricardo",
-    "last_name": "Martins",
-    "position": "G",
-    "height": "6-6",
-    "weight": "190",
-    "jersey_number": "8",
-    "college": "Engenharia",
-    "country": "Spain",
-    "draft_year": 2013,
-    "draft_round": 2,
-    "draft_number": 32,
-    "team_id": 1
+      "date": "2023-10-24",
+      "season": 2023,
+      "status": "Final",
+      "period": 4,
+      "time": "Final",
+      "postseason": false,
+      "home_team_score": 104,
+      "visitor_team_score": 108,
+      "team_home_id": 1,
+      "team_visitor_id": 2
 }
 
 
@@ -239,18 +239,17 @@ Authorization: {{beareToken}}
 GET {{api_url}}/api/v1/games/2
 Accept: {{contentType}}
 Content-Type: {{contentType}}
-Authorization: {{beareToken}}
+X-Authorization: {{beareToken}}
 
 
 ### GAME update
 PUT {{api_url}}/api/v1/games/1
 Accept: {{contentType}}
 Content-Type: {{contentType}}
-Authorization: {{beareToken}}
+X-Authorization: {{beareToken}}
 
 {
-    "first_name": "Jogador",
-    "last_name": "numero 1"
+    "season": 2024,
 }
 
 
@@ -259,11 +258,11 @@ Authorization: {{beareToken}}
 DELETE {{api_url}}/api/v1/games/1
 Accept: {{contentType}}
 Content-Type: {{contentType}}
-Authorization: {{beareToken}}
+X-Authorization: {{beareToken}}
 
 
 ### GAME Find
-GET {{api_url}}/api/v1/games?q=eng
+GET {{api_url}}/api/v1/games?q=eng&season=2023
 Accept: {{contentType}}
 Content-Type: {{contentType}}
-Authorization: {{beareToken}}
+X-Authorization: {{beareToken}}

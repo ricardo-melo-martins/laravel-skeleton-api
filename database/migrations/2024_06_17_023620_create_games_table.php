@@ -24,10 +24,10 @@ return new class extends Migration
             $table->unsignedInteger('home_team_score')->default(0);
             $table->unsignedInteger('visitor_team_score')->default(0);
             
-            $table->unsignedBigInteger('team_home_id');
+            $table->unsignedBigInteger('team_home_id')->default(0);
             $table->foreign('team_home_id')->references('id')->on('teams');
 
-            $table->unsignedBigInteger('team_visitor_id');
+            $table->unsignedBigInteger('team_visitor_id')->default(0);
             $table->foreign('team_visitor_id')->references('id')->on('teams');
 
             $table->timestamps();

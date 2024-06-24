@@ -6,18 +6,23 @@ use App\Http\Controllers\ControllerAbstract;
 use App\Modules\Authentication\Handlers\Requests\RegisterRequest;
 use App\Modules\Users\Events\UserRegistered;
 use App\Modules\Users\Models\User;
-use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Lang;
 
 class RegisterController extends ControllerAbstract
 {
+    public function __construct()
+    {        
+        $this->middleware(['auth:api', 'header.authorization'], ['except' => ['register']]);
+    }
+
     /**
      * Register
      * @OA\Post (
      *     path="/api/auth/register",
      *     tags={"AuthenticationPublic"},
+     *     security={{"bearerAuth": {}}},
      *     @OA\RequestBody(
      *         @OA\MediaType(
      *             mediaType="application/json",

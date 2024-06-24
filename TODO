@@ -39,8 +39,8 @@ CRUD:
 -[ ] ** Como usuário Admin da api, eu possi realizar qualquer operação em todos os endpoints.
 -[ ] ** Como usuario User da api, eu não posso excluir nenhum registro Middleware Personalizado para Autenticação, para além do Token do Samctum:
 
--[ ] ● Crie um middleware personalizado para autenticar as requisições usando o cabeçalho "X-Authorization".
-    -[ ] ● Este middleware deve validar o token de autenticação e permitir o acesso apenas a usuários autenticados.
+-[x] ● Crie um middleware personalizado para autenticar as requisições usando o cabeçalho "X-Authorization".
+    -[x] ● Este middleware deve validar o token de autenticação e permitir o acesso apenas a usuários autenticados.
 
 Critérios de Avaliação:
 
@@ -64,14 +64,13 @@ Plus:
 -[ ] ● Crie Testes Unitários e Features
 -[ ] ● Utilize Contracts
      -[x] / Traits
-     -[ ] / Resources
+     -[x] / Resources
 -[ ] ● Utilize Docker no Projeto
 
 
 Minhas observações
 
 -[x] Documentar com Swagger
--[ ] Sanitizar dados que chegam nas models e requests 
 -[x] Service Layer Exemplo de uso com Command
 -[x] Automaçao em script
 
