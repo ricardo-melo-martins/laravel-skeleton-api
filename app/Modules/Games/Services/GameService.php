@@ -3,6 +3,8 @@
 namespace App\Modules\Games\Services;
 
 use App\Modules\Games\Repositories\GameRepository;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
 
 class GameService{
     public function __construct(
@@ -33,5 +35,22 @@ class GameService{
     public function find($id)
     {
         return $this->gameRepository->find($id);
+    }
+
+    public function search(Collection $options)
+    {
+        if(!$options->isEmpty())
+        {
+            // ajustar para passar a busca necessaria
+            
+            $filterOptions = collect([
+                "final" => Str::lower($options->get("q")),
+            ]);
+
+            return $this->gameRepository->search($filterOptions);
+        }
+    
+        // TODO: ajustar limite de registros
+        return $this->gameRepository->all();    
     }
 }

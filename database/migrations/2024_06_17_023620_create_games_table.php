@@ -14,6 +14,7 @@ return new class extends Migration
 
         Schema::create('games', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('external_game_id')->nullable()->unique()->comment('Auxilio para sincronia nas importacoes');
             $table->date('date');
             $table->year('season');
             $table->string('status', 12);

@@ -2,14 +2,16 @@
 
 namespace App\Providers;
 
+use App\Console\Commands\GetTeamsDataExternalApi;
 use App\Modules\Games\Repositories\GameRepository;
 use App\Modules\Games\Services\GameService;
 use App\Modules\Players\Repositories\PlayerRepository;
 use App\Modules\Players\Services\PlayerService;
 use App\Modules\Teams\Repositories\TeamRepository;
+use App\Modules\Teams\Services\TeamExternalService;
 use App\Modules\Teams\Services\TeamService;
 use Illuminate\Support\ServiceProvider;
-
+use Laravel\Sanctum\Sanctum;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -39,6 +41,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        // Sanctum::usePersonalAccessTokenModel(PersonalAccessToken::class);
     }
 }

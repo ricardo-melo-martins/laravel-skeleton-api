@@ -17,7 +17,7 @@ class RegisterController extends ControllerAbstract
      * Register
      * @OA\Post (
      *     path="/api/auth/register",
-     *     tags={"Auth"},
+     *     tags={"AuthenticationPublic"},
      *     @OA\RequestBody(
      *         @OA\MediaType(
      *             mediaType="application/json",

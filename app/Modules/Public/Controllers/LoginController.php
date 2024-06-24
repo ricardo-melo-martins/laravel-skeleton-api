@@ -7,6 +7,7 @@ use App\Modules\Authentication\Resources\LoginResource;
 use App\Modules\Authentication\Handlers\Requests\LoginRequest;
 use App\Modules\Authentication\Interfaces\ILogin;
 use App\Modules\Authentication\Services\AuthService;
+use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 
 class LoginController extends ControllerAbstract implements ILogin
@@ -22,7 +23,7 @@ class LoginController extends ControllerAbstract implements ILogin
      * Login
      * @OA\Post (
      *     path="/api/auth/login",
-     *     tags={"Auth"},
+     *     tags={"AuthenticationPublic"},
      *     @OA\RequestBody(
      *         @OA\MediaType(
      *             mediaType="application/json",
@@ -90,5 +91,11 @@ class LoginController extends ControllerAbstract implements ILogin
     public function login(LoginRequest $request): LoginResource
     {
         return $this->authService->login($request['email'], $request['password']);
+    }
+
+    
+    public function me(Request $request)
+    {
+    return $request->user();
     }
 }

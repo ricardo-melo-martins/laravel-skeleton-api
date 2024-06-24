@@ -11,6 +11,7 @@ class StoreGamesRequest extends FormRequest
      */
     public function authorize(): bool
     {
+        // FIXME: Habilitar Auth:check
         return true;
     }
 

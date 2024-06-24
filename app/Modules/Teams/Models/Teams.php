@@ -12,7 +12,7 @@ class Teams extends Model
     protected $table = "teams";
 
     protected $fillable = [
-        'external_teamid',
+        'external_team_id',
         'conference',
         "division",
         "city",

@@ -80,11 +80,11 @@ class Handler extends ExceptionHandler
 
         if ($e instanceof ModelNotFoundException) {
 
-            return response()->json(['message' => 'Recurso não encontrado'], 404);
+            return response()->json(['message' => 'Recurso nn&aatilde;o encontrado'], 404);
 
         } elseif ($e instanceof NotFoundHttpException) {
 
-            return response()->json(['message' => 'Página não encontrada'], 404);
+            return response()->json(['message' => 'P&aacute;gina n&aatilde;o encontrada'], 404);
 
         }
 

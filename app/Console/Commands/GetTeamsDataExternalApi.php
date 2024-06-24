@@ -2,13 +2,19 @@
 
 namespace App\Console\Commands;
 
-use App\Modules\Teams\Models\Teams;
+use App\Modules\Teams\Services\TeamHttpExternalService;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 
 class GetTeamsDataExternalApi extends Command
 {
+    private TeamHttpExternalService $teamExternalService;
+
+    public function __construct(TeamHttpExternalService $teamExternalService)
+    {
+        $this->teamExternalService = $teamExternalService;
+        parent::__construct();
+    }
     /**
      * The name and signature of the console command.
      *
@@ -26,39 +32,19 @@ class GetTeamsDataExternalApi extends Command
     /**
      * Execute the console command.
      */
-    public function handle()
+    public function handle(): void
     {
-        Log::debug($this->description);
+        Log::debug("JOB {$this->signature} iniciado :: {$this->description}");
         
-        $url = env('API_EXTERNAL_URL').'/v1/teams';
-        $token = env('API_AUTHORIZATION');
-        
-        $response = Http::withHeaders([
-            'Authorization' =>  $token,
-            'Content-Type' => 'application/json' 
-       ])->get($url);
-
-        if($response->successful()) {
+        try {
             
-            $data = $response->json();
+            $this->teamExternalService->saveTeamsOnDatabaseOrFail();    
 
-            //Log::debug($data);
-            //:TODO dto e sanitizar
-            $item = new Teams();
-            $item->conference =  $data['conference'];
-            $item->division=  $data['division'];
-            $item->city=  $data['city'];
-            $item->name=  $data['name'];
-            $item->full_name=  $data['full_name'];
-            $item->abbreviation=  $data['abbreviation'];
-
-            $item->save();
-            
-            
-        } else {
-            Log::error("Erro na importação dos dados da api {$url}");
+        } catch (\Throwable $th) {
+            Log::error("JOB falhou :: {$th->getMessage()}");
         }
 
-        
+        Log::debug("JOB {$this->signature} terminado ");
     }
+      
 }

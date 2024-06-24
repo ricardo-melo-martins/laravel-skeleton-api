@@ -3,6 +3,8 @@
 namespace App\Modules\Players\Services;
 
 use App\Modules\Players\Repositories\PlayerRepository;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
 
 class PlayerService
 {
@@ -34,5 +36,22 @@ class PlayerService
     public function find($id)
     {
         return $this->playerRepository->find($id);
+    }
+
+    public function search(Collection $options)
+    {
+        if(!$options->isEmpty())
+        {
+            // ajustar para passar a busca necessaria
+            
+            $filterOptions = collect([
+                "college" => Str::lower($options->get("q")),
+            ]);
+
+            return $this->playerRepository->search($filterOptions);
+        }
+    
+        // TODO: ajustar limite de registros
+        return $this->playerRepository->all();    
     }
 }

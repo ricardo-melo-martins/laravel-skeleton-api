@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('teams', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('external_team_id')->comment('Auxilio para sincronia nas importacoes');            
+            $table->unsignedBigInteger('external_team_id')->nullable()->unique()->comment('Auxilio para sincronia nas importacoes');            
             $table->string('conference', 45)->nullable();
             $table->string('division', 120)->nullable();
             $table->string('city', 120)->nullable();

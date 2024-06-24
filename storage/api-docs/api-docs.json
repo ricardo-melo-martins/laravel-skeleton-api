@@ -6,7 +6,102 @@
         "version": "1.0.0"
     },
     "paths": {
-        "/api/games": {
+        "/api/auth/logout": {
+            "post": {
+                "tags": [
+                    "AuthenticationPrivate"
+                ],
+                "summary": "Logout",
+                "operationId": "38e56bf83bebc195596e7769f893ce09",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "": {}
+                                },
+                                "type": "object",
+                                "example": []
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "meta": {
+                                            "properties": {
+                                                "code": {
+                                                    "type": "number",
+                                                    "example": 200
+                                                },
+                                                "status": {
+                                                    "type": "string",
+                                                    "example": "success"
+                                                },
+                                                "message": {
+                                                    "type": "string",
+                                                    "example": "Successfully logged out"
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "example": []
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Invalid token",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "meta": {
+                                            "properties": {
+                                                "code": {
+                                                    "type": "number",
+                                                    "example": 422
+                                                },
+                                                "status": {
+                                                    "type": "string",
+                                                    "example": "error"
+                                                },
+                                                "message": {
+                                                    "type": "string",
+                                                    "example": "Unauthenticated."
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "example": []
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "token": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/games": {
             "get": {
                 "tags": [
                     "Games"
@@ -68,10 +163,10 @@
                 }
             }
         },
-        "/api/games/{gameId}": {
+        "/api/v1/games/{gameId}": {
             "get": {
                 "tags": [
-                    "Game"
+                    "Games"
                 ],
                 "summary": "Get a one game",
                 "operationId": "GetGameDetails",
@@ -184,10 +279,10 @@
                 }
             }
         },
-        "/api/player": {
+        "/api/v1/players": {
             "get": {
                 "tags": [
-                    "Player"
+                    "Players"
                 ],
                 "summary": "Get a list of players",
                 "operationId": "SearchPlayer",
@@ -213,14 +308,41 @@
                                 "properties": {
                                     "": {
                                         "properties": {
-                                            "name": {
+                                            "first_name": {
                                                 "type": "string"
                                             },
-                                            "description": {
+                                            "last_name": {
                                                 "type": "string"
                                             },
-                                            "status": {
+                                            "position": {
                                                 "type": "string"
+                                            },
+                                            "height": {
+                                                "type": "string"
+                                            },
+                                            "weight": {
+                                                "type": "string"
+                                            },
+                                            "jersey_number": {
+                                                "type": "string"
+                                            },
+                                            "college": {
+                                                "type": "string"
+                                            },
+                                            "country": {
+                                                "type": "string"
+                                            },
+                                            "draft_year": {
+                                                "type": "integer"
+                                            },
+                                            "draft_round": {
+                                                "type": "integer"
+                                            },
+                                            "draft_number": {
+                                                "type": "integer"
+                                            },
+                                            "team_id": {
+                                                "type": "integer"
                                             }
                                         },
                                         "type": "object"
@@ -228,9 +350,24 @@
                                 },
                                 "type": "object",
                                 "example": {
-                                    "name": "Titulo de minha tarefa aqui",
-                                    "description": "Uma descrição para minha tarefa",
-                                    "password": "pendente"
+                                    "data": {
+                                        "id": 1,
+                                        "external_player_id": null,
+                                        "first_name": "Jogador",
+                                        "last_name": "numero 1",
+                                        "position": "G",
+                                        "height": "6-6",
+                                        "weight": "190",
+                                        "jersey_number": "8",
+                                        "college": "Engenharia",
+                                        "country": "Spain",
+                                        "draft_year": "2013",
+                                        "draft_round": 2,
+                                        "draft_number": 32,
+                                        "team_id": 1,
+                                        "created_at": "2024-06-24T00:27:47.000000Z",
+                                        "updated_at": "2024-06-24T00:29:02.000000Z"
+                                    }
                                 }
                             }
                         }
@@ -246,7 +383,7 @@
                 }
             }
         },
-        "/api/players/{playerId}": {
+        "/api/v1/players/{playerId}": {
             "get": {
                 "tags": [
                     "Players"
@@ -301,14 +438,41 @@
                                 "properties": {
                                     "": {
                                         "properties": {
-                                            "name": {
+                                            "first_name": {
                                                 "type": "string"
                                             },
-                                            "description": {
+                                            "last_name": {
                                                 "type": "string"
                                             },
-                                            "status": {
+                                            "position": {
                                                 "type": "string"
+                                            },
+                                            "height": {
+                                                "type": "string"
+                                            },
+                                            "weight": {
+                                                "type": "string"
+                                            },
+                                            "jersey_number": {
+                                                "type": "string"
+                                            },
+                                            "college": {
+                                                "type": "string"
+                                            },
+                                            "country": {
+                                                "type": "string"
+                                            },
+                                            "draft_year": {
+                                                "type": "integer"
+                                            },
+                                            "draft_round": {
+                                                "type": "integer"
+                                            },
+                                            "draft_number": {
+                                                "type": "integer"
+                                            },
+                                            "team_id": {
+                                                "type": "integer"
                                             }
                                         },
                                         "type": "object"
@@ -316,9 +480,24 @@
                                 },
                                 "type": "object",
                                 "example": {
-                                    "name": "Novo Titulo de minha tarefa aqui",
-                                    "description": "Uma descrição para minha tarefa",
-                                    "password": "indefinido"
+                                    "data": {
+                                        "id": 1,
+                                        "external_player_id": null,
+                                        "first_name": "Jogador",
+                                        "last_name": "numero 1",
+                                        "position": "G",
+                                        "height": "6-6",
+                                        "weight": "190",
+                                        "jersey_number": "8",
+                                        "college": "Engenharia",
+                                        "country": "Spain",
+                                        "draft_year": "2013",
+                                        "draft_round": 2,
+                                        "draft_number": 32,
+                                        "team_id": 1,
+                                        "created_at": "2024-06-24T00:27:47.000000Z",
+                                        "updated_at": "2024-06-24T00:29:02.000000Z"
+                                    }
                                 }
                             }
                         }
@@ -362,7 +541,320 @@
                 }
             }
         },
-        "/api/teams": {
+        "/api/auth/login": {
+            "post": {
+                "tags": [
+                    "AuthenticationPublic"
+                ],
+                "summary": "Login",
+                "operationId": "489c1fda3099ac7b58863988ce6795b8",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "": {
+                                        "properties": {
+                                            "email": {
+                                                "type": "string"
+                                            },
+                                            "password": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "email": "user@test.com",
+                                    "password": "YourP@ssw0rd!"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Valid credentials",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "meta": {
+                                            "properties": {
+                                                "code": {
+                                                    "type": "number",
+                                                    "example": 200
+                                                },
+                                                "status": {
+                                                    "type": "string",
+                                                    "example": "success"
+                                                },
+                                                "message": {
+                                                    "type": "string",
+                                                    "example": null
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "user": {
+                                                    "properties": {
+                                                        "id": {
+                                                            "type": "number",
+                                                            "example": 2
+                                                        },
+                                                        "name": {
+                                                            "type": "string",
+                                                            "example": "User"
+                                                        },
+                                                        "email": {
+                                                            "type": "string",
+                                                            "example": "user@test.com"
+                                                        },
+                                                        "email_verified_at": {
+                                                            "type": "string",
+                                                            "example": null
+                                                        },
+                                                        "updated_at": {
+                                                            "type": "string",
+                                                            "example": "2022-06-28 06:06:17"
+                                                        },
+                                                        "created_at": {
+                                                            "type": "string",
+                                                            "example": "2022-06-28 06:06:17"
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                },
+                                                "access_token": {
+                                                    "properties": {
+                                                        "token": {
+                                                            "type": "string",
+                                                            "example": "randomtokenasfhajskfhajf398rureuuhfdshk"
+                                                        },
+                                                        "type": {
+                                                            "type": "string",
+                                                            "example": "Bearer"
+                                                        },
+                                                        "expires_in": {
+                                                            "type": "number",
+                                                            "example": 3600
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Invalid credentials",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "meta": {
+                                            "properties": {
+                                                "code": {
+                                                    "type": "number",
+                                                    "example": 401
+                                                },
+                                                "status": {
+                                                    "type": "string",
+                                                    "example": "error"
+                                                },
+                                                "message": {
+                                                    "type": "string",
+                                                    "example": "Incorrect username or password!"
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "example": []
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/auth/register": {
+            "post": {
+                "tags": [
+                    "AuthenticationPublic"
+                ],
+                "summary": "Register",
+                "operationId": "ae17e52d7e4aaa0ffc3b85edd91f1447",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "": {
+                                        "properties": {
+                                            "name": {
+                                                "type": "string"
+                                            },
+                                            "email": {
+                                                "type": "string"
+                                            },
+                                            "password": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "name": "John",
+                                    "email": "john@test.com",
+                                    "password": "johnjohn1"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "meta": {
+                                            "properties": {
+                                                "code": {
+                                                    "type": "number",
+                                                    "example": 200
+                                                },
+                                                "status": {
+                                                    "type": "string",
+                                                    "example": "success"
+                                                },
+                                                "message": {
+                                                    "type": "string",
+                                                    "example": null
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "user": {
+                                                    "properties": {
+                                                        "id": {
+                                                            "type": "number",
+                                                            "example": 1
+                                                        },
+                                                        "name": {
+                                                            "type": "string",
+                                                            "example": "John"
+                                                        },
+                                                        "email": {
+                                                            "type": "string",
+                                                            "example": "john@test.com"
+                                                        },
+                                                        "email_verified_at": {
+                                                            "type": "string",
+                                                            "example": null
+                                                        },
+                                                        "updated_at": {
+                                                            "type": "string",
+                                                            "example": "2022-06-28 06:06:17"
+                                                        },
+                                                        "created_at": {
+                                                            "type": "string",
+                                                            "example": "2022-06-28 06:06:17"
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                },
+                                                "access_token": {
+                                                    "properties": {
+                                                        "token": {
+                                                            "type": "string",
+                                                            "example": "randomtokenasfhajskfhajf398rureuuhfdshk"
+                                                        },
+                                                        "type": {
+                                                            "type": "string",
+                                                            "example": "Bearer"
+                                                        },
+                                                        "expires_in": {
+                                                            "type": "number",
+                                                            "example": 3600
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "meta": {
+                                            "properties": {
+                                                "code": {
+                                                    "type": "number",
+                                                    "example": 422
+                                                },
+                                                "status": {
+                                                    "type": "string",
+                                                    "example": "error"
+                                                },
+                                                "message": {
+                                                    "properties": {
+                                                        "email": {
+                                                            "type": "array",
+                                                            "items": {
+                                                                "type": "string",
+                                                                "example": "The email has already been taken."
+                                                            },
+                                                            "collectionFormat": "multi"
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "example": []
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/teams": {
             "get": {
                 "tags": [
                     "Teams"
@@ -391,13 +883,22 @@
                                 "properties": {
                                     "": {
                                         "properties": {
+                                            "conference": {
+                                                "type": "string"
+                                            },
+                                            "division": {
+                                                "type": "string"
+                                            },
+                                            "city": {
+                                                "type": "string"
+                                            },
                                             "name": {
                                                 "type": "string"
                                             },
-                                            "description": {
+                                            "full_name": {
                                                 "type": "string"
                                             },
-                                            "status": {
+                                            "abbreviation": {
                                                 "type": "string"
                                             }
                                         },
@@ -406,9 +907,12 @@
                                 },
                                 "type": "object",
                                 "example": {
-                                    "name": "Titulo de minha tarefa aqui",
-                                    "description": "Uma descrição para minha tarefa",
-                                    "password": "pendente"
+                                    "conference": "West",
+                                    "division": "Southwest",
+                                    "city": "Los Angeles",
+                                    "name": "Raptors",
+                                    "full_name": "Portland Trail Blazers",
+                                    "abbreviation": "PTB"
                                 }
                             }
                         }
@@ -424,7 +928,7 @@
                 }
             }
         },
-        "/api/teams/{teamId}": {
+        "/api/v1/teams/{teamId}": {
             "get": {
                 "tags": [
                     "Teams"
@@ -479,13 +983,22 @@
                                 "properties": {
                                     "": {
                                         "properties": {
+                                            "conference": {
+                                                "type": "string"
+                                            },
+                                            "division": {
+                                                "type": "string"
+                                            },
+                                            "city": {
+                                                "type": "string"
+                                            },
                                             "name": {
                                                 "type": "string"
                                             },
-                                            "description": {
+                                            "full_name": {
                                                 "type": "string"
                                             },
-                                            "status": {
+                                            "abbreviation": {
                                                 "type": "string"
                                             }
                                         },
@@ -494,9 +1007,12 @@
                                 },
                                 "type": "object",
                                 "example": {
-                                    "name": "Novo Titulo de minha tarefa aqui",
-                                    "description": "Uma descrição para minha tarefa",
-                                    "password": "indefinido"
+                                    "conference": "Mid-East",
+                                    "division": "Northwest",
+                                    "city": "Los Angeles",
+                                    "name": "Raptors",
+                                    "full_name": "Portland Trail Blazers",
+                                    "abbreviation": "PTB"
                                 }
                             }
                         }

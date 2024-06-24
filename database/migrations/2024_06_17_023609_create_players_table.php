@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('players', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('external_player_id')->nullable()->comment('Auxilio para sincronia nas importacoes');            
+            $table->unsignedBigInteger('external_player_id')->nullable()->unique()->comment('Auxilio para sincronia nas importacoes');            
             $table->string('first_name', 45);
             $table->string('last_name', 120);
             $table->string('position', 1);

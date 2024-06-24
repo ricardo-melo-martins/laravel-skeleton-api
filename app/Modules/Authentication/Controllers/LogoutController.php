@@ -14,7 +14,7 @@ class LogoutController extends ControllerAbstract
      * Logout
      * @OA\Post (
      *     path="/api/auth/logout",
-     *     tags={"Auth"},
+     *     tags={"AuthenticationPrivate"},
      *     @OA\RequestBody(
      *         @OA\MediaType(
      *             mediaType="application/json",
@@ -59,6 +59,7 @@ class LogoutController extends ControllerAbstract
     {
         Auth::logout();
 
+        // auth()->user()->currentAccessToken()->delete();
         return $this->responseOk(Lang::get('auth.logout'));
     }
 

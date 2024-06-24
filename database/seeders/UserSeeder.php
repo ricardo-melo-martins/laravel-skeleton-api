@@ -16,7 +16,7 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        if(Config::get('tests.enabled')) return;
+        if(!Config::get('tests.enabled')) return;
 
         // Criar um usuário que eu saiba a senha
         DB::table('users')->insert([
@@ -28,11 +28,6 @@ class UserSeeder extends Seeder
             'token' => Str::random(10),
         ]);
 
-        if (Config::get('tests.seed_data_fake')) {
-
-            // Criar alguns usuários fakes
-            User::factory()->count(10)->create();
-        }
-
+        User::factory()->count(10)->create();
     }
 }

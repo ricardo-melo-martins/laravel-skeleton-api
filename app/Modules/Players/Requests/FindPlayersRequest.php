@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Modules\Teams\Requests;
+namespace App\Modules\Players\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateTeamsRequest extends FormRequest
+class FindPlayersRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,7 +23,7 @@ class UpdateTeamsRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'q' => ['string'],
         ];
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Modules\Games\Repositories;
 use App\Modules\Games\Models\Games;
+use Illuminate\Support\Collection;
 
 class GameRepository implements GameRepositoryInterface
 {
@@ -31,5 +32,25 @@ class GameRepository implements GameRepositoryInterface
     public function find($id)
     {
         return Games::findOrFail($id);
+    }
+
+        /**
+     * Buscar jogadores
+     *
+     * @param Collection $options
+     * @return Games
+     */
+    public function search(Collection $options)
+    {
+        $games = Games::query();
+
+        if ($options->has('college')) {
+            
+            $college = $options->get("college");
+            
+            $games->where('college','LIKE',"%{$college}%");
+        }
+
+        return $games->get();
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Modules\Games\Controllers;
 
 use App\Http\Controllers\ControllerAbstract;
+use App\Modules\Games\Requests\FindGamesRequest;
 use Illuminate\Http\JsonResponse;
 
 use App\Modules\Games\Requests\StoreGamesRequest;
@@ -21,7 +22,7 @@ class GamesController extends ControllerAbstract
     
     /**
      * @OA\Get(
-     *     path="/api/games",
+     *     path="/api/v1/games",
      *     summary="Get a list of games",
      *     tags={"Games"},
      *     operationId="SearchGames",
@@ -29,16 +30,16 @@ class GamesController extends ControllerAbstract
      *     @OA\Response(response=400, description="Invalid request")
      * )
      */
-    public function index(): JsonResponse
+    public function index(FindGamesRequest $request): JsonResponse
     {
-        $users = $this->gameService->all();
+        $games = $this->gameService->search(collect($request->all()));
 
-        return $this->responseOk($users);
+        return $this->responseOk($games);
     }
 
     /**
      * @OA\Post (
-     *     path="/api/games",
+     *     path="/api/v1/games",
      *     summary="Create one game",
      *     tags={"Games"},
      *     operationId="CreateGame",
@@ -87,9 +88,9 @@ class GamesController extends ControllerAbstract
     /**
      *
      * @OA\Get(
-     *     path="/api/games/{gameId}",
+     *     path="/api/v1/games/{gameId}",
      *     summary="Get a one game",
-     *     tags={"Game"},
+     *     tags={"Games"},
      *     operationId="GetGameDetails",
      *     @OA\Parameter(
      *        description="Game ID",
@@ -116,7 +117,7 @@ class GamesController extends ControllerAbstract
 
     /**
     * @OA\Put (
-     *     path="/api/games/{gameId}",
+     *     path="/api/v1/games/{gameId}",
      *     summary="Update one game",
      *     tags={"Games"},
      *     operationId="UpdateGamesDetails",
@@ -176,7 +177,7 @@ class GamesController extends ControllerAbstract
     /**
      *
      * @OA\Delete(
-     *     path="/api/games/{gameId}",
+     *     path="/api/v1/games/{gameId}",
      *     summary="Delete a one game",
      *     tags={"Games"},
      *     operationId="DeleteGameDetails",

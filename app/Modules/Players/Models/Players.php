@@ -23,7 +23,9 @@ class Players extends Model
         "country",
         "draft_year",
         "draft_round",
-        "draft_number"
+        "draft_number",
+        "external_player_id",
+        "team_id"
     ];
 
     public function team()

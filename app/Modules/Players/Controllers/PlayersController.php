@@ -3,10 +3,10 @@
 namespace App\Modules\Players\Controllers;
 
 use App\Http\Controllers\ControllerAbstract;
-use App\Modules\Players\Models\Players;
 use App\Modules\Players\Requests\StorePlayersRequest;
 use App\Modules\Players\Requests\UpdatePlayersRequest;
 use App\Modules\Players\Services\PlayerService;
+use App\Modules\Players\Requests\FindPlayersRequest;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Lang;
 
@@ -20,25 +20,25 @@ class PlayersController extends ControllerAbstract
 
     /**
      * @OA\Get(
-     *     path="/api/player",
+     *     path="/api/v1/players",
      *     summary="Get a list of players",
-     *     tags={"Player"},
+     *     tags={"Players"},
      *     operationId="SearchPlayer",
      *     @OA\Response(response=200, description="Successful operation"),
      *     @OA\Response(response=400, description="Invalid request")
      * )
      */
-    public function index(): JsonResponse
+    public function index(FindPlayersRequest $request): JsonResponse
     {
-        $users = $this->playerService->all();
+        $players = $this->playerService->search(collect($request->all()));
 
-        return $this->responseOk($users);
+        return $this->responseOk($players);
     }
 
 
     /**
      * @OA\Post (
-     *     path="/api/player",
+     *     path="/api/v1/players",
      *     summary="Create one player",
      *     tags={"Players"},
      *     operationId="CreatePlayer",
@@ -49,23 +49,74 @@ class PlayersController extends ControllerAbstract
      *                 @OA\Property(
      *                      type="object",
      *                      @OA\Property(
-     *                          property="name",
+     *                          property="first_name",
      *                          type="string"
      *                      ),
      *                      @OA\Property(
-     *                          property="description",
+     *                          property="last_name",
      *                          type="string"
      *                      ),
      *                      @OA\Property(
-     *                          property="status",
+     *                          property="position",
      *                          type="string"
+     *                      ),
+     *                      @OA\Property(
+     *                          property="height",
+     *                          type="string"
+     *                      ),
+     *                      @OA\Property(
+     *                          property="weight",
+     *                          type="string"
+     *                      ),
+     *                      @OA\Property(
+     *                          property="jersey_number",
+     *                          type="string"
+     *                      ),
+     *                      @OA\Property(
+     *                          property="college",
+     *                          type="string"
+     *                      ),
+     *                      @OA\Property(
+     *                          property="country",
+     *                          type="string"
+     *                      ),
+     *                      @OA\Property(
+     *                          property="draft_year",
+     *                          type="integer"
+     *                      ),
+     *                      @OA\Property(
+     *                          property="draft_round",
+     *                          type="integer"
+     *                      ),
+     *                      @OA\Property(
+     *                          property="draft_number",
+     *                          type="integer"
+     *                      ),
+     *                      @OA\Property(
+     *                          property="team_id",
+     *                          type="integer"
      *                      )
      *                 ),
      *                 example={
-     *                     "name":"Titulo de minha tarefa aqui",
-     *                     "description":"Uma descrição para minha tarefa",
-     *                     "password":"pendente"
-     *                }
+     *                  "data": {
+     *                          "id": 1,
+     *                           "external_player_id": null,
+     *                           "first_name": "Jogador",
+     *                           "last_name": "numero 1",
+     *                           "position": "G",
+     *                           "height": "6-6",
+     *                           "weight": "190",
+     *                           "jersey_number": "8",
+     *                           "college": "Engenharia",
+     *                           "country": "Spain",
+     *                           "draft_year": "2013",
+     *                           "draft_round": 2,
+     *                           "draft_number": 32,
+     *                           "team_id": 1,
+     *                           "created_at": "2024-06-24T00:27:47.000000Z",
+     *                           "updated_at": "2024-06-24T00:29:02.000000Z"
+     *                       }
+     *                   }
      *             )
      *         )
      *      ),
@@ -88,7 +139,7 @@ class PlayersController extends ControllerAbstract
     /**
      *
      * @OA\Get(
-     *     path="/api/players/{playerId}",
+     *     path="/api/v1/players/{playerId}",
      *     summary="Get a one players",
      *     tags={"Players"},
      *     operationId="GetPlayerDetails",
@@ -117,7 +168,7 @@ class PlayersController extends ControllerAbstract
 
     /**
     * @OA\Put (
-     *     path="/api/players/{playerId}",
+     *     path="/api/v1/players/{playerId}",
      *     summary="Update one player",
      *     tags={"Players"},
      *     operationId="UpdatePlayersDetails",
@@ -139,22 +190,73 @@ class PlayersController extends ControllerAbstract
      *                 @OA\Property(
      *                      type="object",
      *                      @OA\Property(
-     *                          property="name",
+     *                          property="first_name",
      *                          type="string"
      *                      ),
      *                      @OA\Property(
-     *                          property="description",
+     *                          property="last_name",
      *                          type="string"
      *                      ),
      *                      @OA\Property(
-     *                          property="status",
+     *                          property="position",
      *                          type="string"
+     *                      ),
+     *                      @OA\Property(
+     *                          property="height",
+     *                          type="string"
+     *                      ),
+     *                      @OA\Property(
+     *                          property="weight",
+     *                          type="string"
+     *                      ),
+     *                      @OA\Property(
+     *                          property="jersey_number",
+     *                          type="string"
+     *                      ),
+     *                      @OA\Property(
+     *                          property="college",
+     *                          type="string"
+     *                      ),
+     *                      @OA\Property(
+     *                          property="country",
+     *                          type="string"
+     *                      ),
+     *                      @OA\Property(
+     *                          property="draft_year",
+     *                          type="integer"
+     *                      ),
+     *                      @OA\Property(
+     *                          property="draft_round",
+     *                          type="integer"
+     *                      ),
+     *                      @OA\Property(
+     *                          property="draft_number",
+     *                          type="integer"
+     *                      ),
+     *                      @OA\Property(
+     *                          property="team_id",
+     *                          type="integer"
      *                      )
      *                 ),
      *                 example={
-     *                     "name":"Novo Titulo de minha tarefa aqui",
-     *                     "description":"Uma descrição para minha tarefa",
-     *                     "password":"indefinido"
+     *                  "data": {
+     *                          "id": 1,
+     *                           "external_player_id": null,
+     *                           "first_name": "Jogador",
+     *                           "last_name": "numero 1",
+     *                           "position": "G",
+     *                           "height": "6-6",
+     *                           "weight": "190",
+     *                           "jersey_number": "8",
+     *                           "college": "Engenharia",
+     *                           "country": "Spain",
+     *                           "draft_year": "2013",
+     *                           "draft_round": 2,
+     *                           "draft_number": 32,
+     *                           "team_id": 1,
+     *                           "created_at": "2024-06-24T00:27:47.000000Z",
+     *                           "updated_at": "2024-06-24T00:29:02.000000Z"
+     *                       }
      *                }
      *             )
      *         )
@@ -178,7 +280,7 @@ class PlayersController extends ControllerAbstract
     /**
      *
      * @OA\Delete(
-     *     path="/api/players/{playerId}",
+     *     path="/api/v1/players/{playerId}",
      *     summary="Delete a one player",
      *     tags={"Players"},
      *     operationId="DeletePlayerDetails",

@@ -1,5 +1,6 @@
 <?php
 
+use App\Modules\Authentication\Controllers\AuthController;
 use App\Modules\Games\Controllers\GamesController;
 use App\Modules\Players\Controllers\PlayersController;
 use App\Modules\Teams\Controllers\TeamsController;
@@ -7,6 +8,7 @@ use App\Modules\Authentication\Controllers\LogoutController;
 use App\Modules\Public\Controllers\LoginController;
 use App\Modules\Public\Controllers\RegisterController;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,33 +22,60 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
-
-
-
-Route::group(['middleware' => []], function () {
-
-    // Public endpoints
-
-    Route::withoutMiddleware([])->group(function () {
-        Route::post('/auth/register', [RegisterController::class, 'register'])->name('auth.register');
-        Route::post('/auth/login', [LoginController::class, 'login'])->name('auth.login');
-
-    });
-
-    // Private Auth
-    Route::middleware(['auth:api'])->group(function () {
-        Route::post('/auth/logout', [LogoutController::class, 'logout'])->name('auth.logout');
-        // TODO: auth/me, pass recovery
-    });
-
-
-    // Private Apps
-    Route::middleware(['auth:api'])->group(function () {
-        Route::resource('teams', TeamsController::class);
-        Route::resource('players', PlayersController::class);
-        Route::resource('games', GamesController::class);
-    });
+Route::get('/', function () {
+    return response()->json([
+        'success' => true,
+        'home' => true
+    ]);
 });
+
+
+Route::get('/health-check', function () {
+    return response()->json([
+        'success' => true,
+        'health' => true
+    ]);
+});
+
+
+Route::group([
+    'middleware' => 'api',
+    'prefix' => 'auth',
+], function ($router) {
+    Route::post('/login', [AuthController::class, 'login']);
+    Route::post('/register', [RegisterController::class, 'register']);
+    Route::post('/logout', [AuthController::class, 'logout']);
+    Route::post('/refresh', [AuthController::class, 'refresh']);
+    Route::get('/me', [AuthController::class, 'userProfile']); 
+    
+});
+
+
+Route::group([
+    'middleware' => 'api',
+    'prefix' => 'v1',
+], function ($router) {
+    
+    # TEAMS
+    Route::get('/teams', TeamsController::class .'@index')->name('teams.index');
+    Route::post('/teams', TeamsController::class .'@store')->name('teams.store');
+    Route::get('/teams/{teamId}', TeamsController::class .'@show')->name('teams.show');
+    Route::put('/teams/{teamId}', TeamsController::class .'@update')->name('teams.update');    
+    Route::delete('/teams/{teamId}', TeamsController::class .'@destroy')->name('teams.destroy');
+    
+    # PLAYERS
+    Route::get('/players', PlayersController::class .'@index')->name('players.index');
+    Route::post('/players', PlayersController::class .'@store')->name('players.store');
+    Route::get('/players/{playerId}', PlayersController::class .'@show')->name('players.show');
+    Route::put('/players/{playerId}', PlayersController::class .'@update')->name('players.update');    
+    Route::delete('/players/{playerId}', PlayersController::class .'@destroy')->name('players.destroy');
+        
+    # GAMES
+    Route::get('/games', GamesController::class .'@index')->name('games.index');
+    Route::post('/games', GamesController::class .'@store')->name('games.store');
+    Route::get('/games/{gameId}', GamesController::class .'@show')->name('games.show');
+    Route::put('/games/{gameId}', GamesController::class .'@update')->name('games.update');    
+    Route::delete('/games/{gameId}', GamesController::class .'@destroy')->name('games.destroy');
+  
+});
+

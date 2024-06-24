@@ -1,0 +1,77 @@
+
+Configuração do Projeto:
+
+-[x] ● Criar um RESTful API Laravel
+-[x] ● Utilize Mysql
+-[x] ● Utilize Samctum para Autenticação dos usuários
+
+Integração com API Pública:
+
+-[x] ● Utilize o serviço externo balldontlie: https://api.balldontlie.io para alimentar o banco de dados.
+-[x] ● Consuma essa API em seu projeto Laravel.
+-[x] ● Implemente uma funcionalidade que obtenha dados da API e armazene-os em seu banco de dados local, 
+    - [ ] essa funcionalidade deverá rodar uma vez por dia para atualizar os dados - 
+        -[ ] OBS: esta API possui um limite de 30 requisicoes por minuto.
+
+Modelos Relacionados:
+
+-[x] ● Consuma essa API em seu projeto Laravel.
+-[x] ● Crie modelos Eloquent para representar os dados obtidos da API.
+-[x] ● Estabeleça relacionamentos entre os modelos, se aplicável.
+
+Padrão Design Pattern Repository:
+
+-[x] ● Implemente o padrão Repository para abstrair o acesso aos dados dos modelos.
+-[x] ● Crie interfaces e classes de repositório para cada modelo.
+
+CRUD:
+
+● Implemente um CRUD para os modelos criados. Os métodos do CRUD devem utilizar os repositórios criados anteriormente.
+-[ ] ○ Crie endpoints para usuários:
+    -[ ] ■ Listar / Editar / Excluir / Criar / Atualizar / Pesquisar os Usuários
+-[ ] ■ Criar duas permissões para os usuários: Admin e User
+
+○ - Crie endpoints para o serviço externo
+-[x] ■ Listar / Editar / Excluir / Criar / Atualizar / Pesquisar os times
+-[x] ■ Listar / Editar / Excluir / Criar / Atualizar / Pesquisar os jogadores
+-[x] ■ Listar / Editar / Excluir / Criar / Atualizar / Pesquisar os jogos
+
+-[ ] ** Como usuário Admin da api, eu possi realizar qualquer operação em todos os endpoints.
+-[ ] ** Como usuario User da api, eu não posso excluir nenhum registro Middleware Personalizado para Autenticação, para além do Token do Samctum:
+
+-[ ] ● Crie um middleware personalizado para autenticar as requisições usando o cabeçalho "X-Authorization".
+    -[ ] ● Este middleware deve validar o token de autenticação e permitir o acesso apenas a usuários autenticados.
+
+Critérios de Avaliação:
+
+● Conformidade com as tarefas descritas.
+● Eficiência e organização do código.
+● Implementação correta e eficiente do padrão Repository.
+● Funcionalidade correta do CRUD.
+● Adequação e eficácia do middleware personalizado para autenticação.
+● Utilização adequada de boas práticas de programação, como PSR e princípios SOLID.
+
+Observação:
+
+● Documente qualquer decisão de design ou arquitetura que considere relevante.
+-[x] ● Compartilhe seu código em um repositório Git (por exemplo, GitHub) 
+     -[ ] e forneça instruções claras sobre como configurar e executar a aplicação.
+
+Plus:
+
+-[x] ● Crie Factories para criação de usuários e permissões
+-[x] ● Crie Seeders para criação de usuários e permissões
+-[ ] ● Crie Testes Unitários e Features
+-[ ] ● Utilize Contracts
+     -[x] / Traits
+     -[ ] / Resources
+-[ ] ● Utilize Docker no Projeto
+
+
+Minhas observações
+
+-[x] Documentar com Swagger
+-[ ] Sanitizar dados que chegam nas models e requests 
+-[x] Service Layer Exemplo de uso com Command
+-[x] Automaçao em script
+

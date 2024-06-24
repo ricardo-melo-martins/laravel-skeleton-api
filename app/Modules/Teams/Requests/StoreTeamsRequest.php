@@ -3,6 +3,7 @@
 namespace App\Modules\Teams\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class StoreTeamsRequest extends FormRequest
 {
@@ -11,7 +12,8 @@ class StoreTeamsRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        // FIXME: Habilitar Auth:check
+        return true; // Auth::check();
     }
 
     /**

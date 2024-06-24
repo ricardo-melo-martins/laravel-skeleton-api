@@ -3,21 +3,69 @@
 
 @contentType = application/json
 
-@beareToken = ""
+@commonPassword = "YourP@ssw0rd!"
 
-### Registrar
+# criar usuario
+@accountUserFirstName = "ricardo"
+@accountUserLastName = "martins"
+@accountUserName = "ricardo.martins"
+@accountUserEmail = "email@teste.com"
+@beareToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2F1dGgvbG9naW4iLCJpYXQiOjE3MTkxNjEzOTgsImV4cCI6MTcxOTE2NDk5OCwibmJmIjoxNzE5MTYxMzk4LCJqdGkiOiJPTEF3cng2Yktjb1RSdmRQIiwic3ViIjoiMSIsInBydiI6IjAwYmVjMDEwYzEzYjAxODY1NDBlYTk2YjI3YzFkYzEwOGI1OGQyNDAifQ.H2STmf2g7KE55H99-8KRcoCD_yUAkMTr3A9u98K2F7E"
+
+### Api Home
+
+GET {{api_url}}/api
+Content-Type: {{contentType}}
+
+### Health-check
+
+GET {{api_url}}/api/health-check
+Accept: {{contentType}}
+Content-Type: {{contentType}}
+
+
+### Autenticar usuário criado no SEED
+POST {{api_url}}/api/auth/login
+Accept: {{contentType}}
+Content-Type: {{contentType}}
+
+{
+    "email": "email@tests.com",
+    "password": {{commonPassword}}
+}
+
+
+### Me
+GET {{api_url}}/api/v1/me
+Accept: {{contentType}}
+Content-Type: {{contentType}}
+Authorization: {{beareToken}}
+
+### Logout
+
+POST {{api_url}}/api/auth/logout
+Accept: {{contentType}}
+Content-Type: {{contentType}}
+Authorization: {{beareToken}}
+
+
+
+
+
+
+### Registrar novo usuário
 POST {{api_url}}/api/auth/register
 Content-Type: {{contentType}}
 
 {
-    "first_name": "Ricardo",
-    "last_name": "Martins",
-    "username": "ricardo.martins",
-    "email": "email@teste.com",
-    "password": "YourP@ssw0rd"
+    "first_name": {{accountUserFirstName}},
+    "last_name": {{accountUserLastName}},
+    "username": {{accountUserName}},
+    "email": {{accountUserEmail}},
+    "password": {{commonPassword}}
 }
 
-### Autenticar
+### Autenticar usuário criado anteriormente
 POST {{api_url}}/api/auth/login
 Content-Type: {{contentType}}
 
@@ -28,21 +76,194 @@ Content-Type: {{contentType}}
 
 ### Logout
 POST {{api_url}}/api/auth/logout
+Accept: {{contentType}}
 Content-Type: {{contentType}}
 Authorization: {{beareToken}}
 
 
-### get teams
-GET {{api_url}}/api/teams
+### TEAM List
+GET {{api_url}}/api/v1/teams
+Accept: {{contentType}}
 Content-Type: {{contentType}}
 Authorization: {{beareToken}}
 
-### get players
-GET {{api_url}}/api/players
+
+### TEAM create
+POST {{api_url}}/api/v1/teams
+Accept: {{contentType}}
 Content-Type: {{contentType}}
 Authorization: {{beareToken}}
 
-### get games
-GET {{api_url}}/api/games
+{
+    "conference": "West",
+    "division": "Southwest",
+    "city": "Los Angeles",
+    "name": "Raptors",
+    "full_name": "Portland Trail Blazers",
+    "abbreviation": "PTB"
+}
+
+
+### TEAM read
+GET {{api_url}}/api/v1/teams/45
+Accept: {{contentType}}
+Content-Type: {{contentType}}
+Authorization: {{beareToken}}
+
+
+### TEAM update
+PUT {{api_url}}/api/v1/teams/45
+Accept: {{contentType}}
+Content-Type: {{contentType}}
+Authorization: {{beareToken}}
+
+{
+    "conference": "Mid-East",
+    "division": "Northwest"
+}
+
+
+### TEAM delete
+
+DELETE {{api_url}}/api/v1/teams/45
+Accept: {{contentType}}
+Content-Type: {{contentType}}
+Authorization: {{beareToken}}
+
+
+### TEAM Find
+GET {{api_url}}/api/v1/teams?q=Bu
+Accept: {{contentType}}
+Content-Type: {{contentType}}
+Authorization: {{beareToken}}
+
+
+
+
+### PLAYER List
+GET {{api_url}}/api/v1/players
+Accept: {{contentType}}
+Content-Type: {{contentType}}
+Authorization: {{beareToken}}
+
+
+### PLAYER create
+POST {{api_url}}/api/v1/players
+Accept: {{contentType}}
+Content-Type: {{contentType}}
+Authorization: {{beareToken}}
+
+{
+    "first_name": "Ricardo",
+    "last_name": "Martins",
+    "position": "G",
+    "height": "6-6",
+    "weight": "190",
+    "jersey_number": "8",
+    "college": "Engenharia",
+    "country": "Spain",
+    "draft_year": 2013,
+    "draft_round": 2,
+    "draft_number": 32,
+    "team_id": 1
+}
+
+
+### PLAYER read
+GET {{api_url}}/api/v1/players/2
+Accept: {{contentType}}
+Content-Type: {{contentType}}
+Authorization: {{beareToken}}
+
+
+### PLAYER update
+PUT {{api_url}}/api/v1/players/1
+Accept: {{contentType}}
+Content-Type: {{contentType}}
+Authorization: {{beareToken}}
+
+{
+    "first_name": "Jogador",
+    "last_name": "numero 1"
+}
+
+
+### PLAYER delete
+
+DELETE {{api_url}}/api/v1/players/1
+Accept: {{contentType}}
+Content-Type: {{contentType}}
+Authorization: {{beareToken}}
+
+
+### PLAYER Find
+GET {{api_url}}/api/v1/players?q=eng
+Accept: {{contentType}}
+Content-Type: {{contentType}}
+Authorization: {{beareToken}}
+
+
+
+
+
+### GAME List
+GET {{api_url}}/api/v1/games
+Accept: {{contentType}}
+Content-Type: {{contentType}}
+Authorization: {{beareToken}}
+
+
+### GAME create
+POST {{api_url}}/api/v1/games
+Accept: {{contentType}}
+Content-Type: {{contentType}}
+Authorization: {{beareToken}}
+
+{
+    "first_name": "Ricardo",
+    "last_name": "Martins",
+    "position": "G",
+    "height": "6-6",
+    "weight": "190",
+    "jersey_number": "8",
+    "college": "Engenharia",
+    "country": "Spain",
+    "draft_year": 2013,
+    "draft_round": 2,
+    "draft_number": 32,
+    "team_id": 1
+}
+
+
+### GAME read
+GET {{api_url}}/api/v1/games/2
+Accept: {{contentType}}
+Content-Type: {{contentType}}
+Authorization: {{beareToken}}
+
+
+### GAME update
+PUT {{api_url}}/api/v1/games/1
+Accept: {{contentType}}
+Content-Type: {{contentType}}
+Authorization: {{beareToken}}
+
+{
+    "first_name": "Jogador",
+    "last_name": "numero 1"
+}
+
+
+### GAME delete
+
+DELETE {{api_url}}/api/v1/games/1
+Accept: {{contentType}}
+Content-Type: {{contentType}}
+Authorization: {{beareToken}}
+
+
+### GAME Find
+GET {{api_url}}/api/v1/games?q=eng
+Accept: {{contentType}}
 Content-Type: {{contentType}}
 Authorization: {{beareToken}}

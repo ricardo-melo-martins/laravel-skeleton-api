@@ -11,7 +11,8 @@ class StorePlayersRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        // FIXME: Habilitar Auth:check
+        return true;
     }
 
     /**

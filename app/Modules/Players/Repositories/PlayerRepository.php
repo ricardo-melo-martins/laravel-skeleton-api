@@ -3,6 +3,7 @@
 namespace App\Modules\Players\Repositories;
 
 use App\Modules\Players\Models\Players;
+use Illuminate\Support\Collection;
 
 class PlayerRepository implements PlayerRepositoryInterface
 {
@@ -32,5 +33,25 @@ class PlayerRepository implements PlayerRepositoryInterface
     public function find($id)
     {
         return Players::findOrFail($id);
+    }
+
+    /**
+     * Buscar jogadores
+     *
+     * @param Collection $options
+     * @return Players
+     */
+    public function search(Collection $options)
+    {
+        $players = Players::query();
+
+        if ($options->has('college')) {
+            
+            $college = $options->get("college");
+            
+            $players->where('college','LIKE',"%{$college}%");
+        }
+
+        return $players->get();
     }
 }

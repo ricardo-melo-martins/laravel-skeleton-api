@@ -3,6 +3,7 @@
 namespace App\Modules\Teams\Controllers;
 
 use App\Http\Controllers\ControllerAbstract;
+use App\Modules\Teams\Requests\FindTeamsRequest;
 use App\Modules\Teams\Requests\StoreTeamsRequest;
 use App\Modules\Teams\Requests\UpdateTeamsRequest;
 use App\Modules\Teams\Services\TeamService;
@@ -19,7 +20,7 @@ class TeamsController extends ControllerAbstract
 
     /**
      * @OA\Get(
-     *     path="/api/teams",
+     *     path="/api/v1/teams",
      *     summary="Get a list of teams",
      *     tags={"Teams"},
      *     operationId="SearchTeams",
@@ -27,17 +28,17 @@ class TeamsController extends ControllerAbstract
      *     @OA\Response(response=400, description="Invalid request")
      * )
      */
-    public function index(): JsonResponse
+    public function index(FindTeamsRequest $request): JsonResponse
     {
-        $users = $this->teamService->all();
-
-        return $this->responseOk($users);
+        $teams = $this->teamService->search(collect($request->all()));
+        
+        return $this->responseOk($teams);
     }
 
 
     /**
      * @OA\Post (
-     *     path="/api/teams",
+     *     path="/api/v1/teams",
      *     summary="Create one team",
      *     tags={"Teams"},
      *     operationId="CreateTeam",
@@ -48,23 +49,38 @@ class TeamsController extends ControllerAbstract
      *                 @OA\Property(
      *                      type="object",
      *                      @OA\Property(
+     *                          property="conference",
+     *                          type="string"
+     *                      ),
+     *                      @OA\Property(
+     *                          property="division",
+     *                          type="string"
+     *                      ),
+     *                      @OA\Property(
+     *                          property="city",
+     *                          type="string"
+     *                      ),
+     *                      @OA\Property(
      *                          property="name",
      *                          type="string"
      *                      ),
      *                      @OA\Property(
-     *                          property="description",
+     *                          property="full_name",
      *                          type="string"
      *                      ),
      *                      @OA\Property(
-     *                          property="status",
+     *                          property="abbreviation",
      *                          type="string"
      *                      )
      *                 ),
      *                 example={
-     *                     "name":"Titulo de minha tarefa aqui",
-     *                     "description":"Uma descrição para minha tarefa",
-     *                     "password":"pendente"
-     *                }
+     *                      "conference": "West",
+     *                      "division": "Southwest",
+     *                      "city": "Los Angeles",
+     *                      "name": "Raptors",
+     *                      "full_name": "Portland Trail Blazers",
+     *                      "abbreviation": "PTB"
+     *                   }
      *             )
      *         )
      *      ),
@@ -87,7 +103,7 @@ class TeamsController extends ControllerAbstract
     /**
      *
      * @OA\Get(
-     *     path="/api/teams/{teamId}",
+     *     path="/api/v1/teams/{teamId}",
      *     summary="Get a one team",
      *     tags={"Teams"},
      *     operationId="GetTeamDetails",
@@ -116,7 +132,7 @@ class TeamsController extends ControllerAbstract
 
     /**
     * @OA\Put (
-     *     path="/api/teams/{teamId}",
+     *     path="/api/v1/teams/{teamId}",
      *     summary="Update one team",
      *     tags={"Teams"},
      *     operationId="UpdateTeamDetails",
@@ -138,23 +154,38 @@ class TeamsController extends ControllerAbstract
      *                 @OA\Property(
      *                      type="object",
      *                      @OA\Property(
+     *                          property="conference",
+     *                          type="string"
+     *                      ),
+     *                      @OA\Property(
+     *                          property="division",
+     *                          type="string"
+     *                      ),
+     *                      @OA\Property(
+     *                          property="city",
+     *                          type="string"
+     *                      ),
+     *                      @OA\Property(
      *                          property="name",
      *                          type="string"
      *                      ),
      *                      @OA\Property(
-     *                          property="description",
+     *                          property="full_name",
      *                          type="string"
      *                      ),
      *                      @OA\Property(
-     *                          property="status",
+     *                          property="abbreviation",
      *                          type="string"
      *                      )
      *                 ),
      *                 example={
-     *                     "name":"Novo Titulo de minha tarefa aqui",
-     *                     "description":"Uma descrição para minha tarefa",
-     *                     "password":"indefinido"
-     *                }
+     *                      "conference": "Mid-East",
+     *                      "division": "Northwest",
+     *                      "city": "Los Angeles",
+     *                      "name": "Raptors",
+     *                      "full_name": "Portland Trail Blazers",
+     *                      "abbreviation": "PTB"
+     *                   }
      *             )
      *         )
      *      ),
@@ -177,7 +208,7 @@ class TeamsController extends ControllerAbstract
     /**
      *
      * @OA\Delete(
-     *     path="/api/teams/{teamId}",
+     *     path="/api/v1/teams/{teamId}",
      *     summary="Delete a one team",
      *     tags={"Teams"},
      *     operationId="DeleteTeamDetails",

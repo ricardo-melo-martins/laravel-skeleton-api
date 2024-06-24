@@ -12,11 +12,10 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule): void
     {
-        // $schedule->command('inspire')->hourly();
         /*
             Executa diariamente a busca de informacoes para serem gravadas no banco de dados
         */
-        $schedule->command('app:get-teams-data-external-api')->daily();
+        $schedule->command('app:get-teams-data-external-api')->everyMinute();
         
     }
 
